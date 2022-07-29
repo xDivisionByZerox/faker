@@ -1,0 +1,43 @@
+name: 'Comment faker samples'
+
+on:
+  pull_request:
+    types:
+      - ready_for_review
+
+jobs:
+  comment:
+    runs-on: ubuntu-latest
+    name: 'Make comment to PR'
+    steps:
+      # - name: Checkout
+      #   uses: actions/checkout@v3
+      #   with:
+      #     fetch-depth: 0
+
+      # - name: Install pnpm
+      #   uses: pnpm/action-setup@v2.2.2
+      #   with:
+      #     version: 7
+
+      # - name: Set node version to 18
+      #   uses: actions/setup-node@v3
+      #   with:
+      #     node-version: 18
+      #     cache: 'pnpm'
+
+      # - name: Install deps
+      #   run: pnpm install
+      #   env:
+      #     CYPRESS_INSTALL_BINARY: 0
+
+      - uses: actions/github-script@v5
+        with:
+          github-token: ${{secrets.GITHUB_TOKEN}}
+          script: |
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: 'Hello from workflow!'
+            })
