@@ -3,13 +3,18 @@ name: 'Comment faker samples'
 on:
   pull_request:
     types:
-      - ready_for_review
+      - synchronize
 
 jobs:
   comment:
     runs-on: ubuntu-latest
     name: 'Make comment to PR'
     steps:
+      - uses: lots0logs/gh-action-get-changed-files@2.1.4
+        id: changed_files
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
       # - name: Checkout
       #   uses: actions/checkout@v3
       #   with:
@@ -39,5 +44,5 @@ jobs:
               issue_number: context.issue.number,
               owner: context.repo.owner,
               repo: context.repo.repo,
-              body: 'Hello from workflow!'
+              body: 'Hello from workflow!\n${{join(steps.changed_files.outputs.*, '\n')}}'
             })
