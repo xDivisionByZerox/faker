@@ -2,11 +2,11 @@
 
 exports[`class > expected and actual modules are equal 1`] = `
 [
-  "ModuleDeprecationTest",
-  "ModuleExampleTest",
-  "ModuleFakerJsLinkTest",
-  "ModuleNextFakerJsLinkTest",
-  "ModuleSimpleTest",
+  "ModuleDeprecationTest1",
+  "ModuleExampleTest2",
+  "ModuleFakerJsLinkTest3",
+  "ModuleNextFakerJsLinkTest4",
+  "ModuleSimpleTest5",
 ]
 `;
 
